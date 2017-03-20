@@ -65,11 +65,11 @@ module SplitIoClient
             .map { |split| split.gsub(namespace_key('.split.'), '') }
         end
 
-        def set_change_number(since)
+        def set_changeNumber(since)
           @adapter.set_string(namespace_key('.splits.till'), since)
         end
 
-        def get_change_number
+        def get_changeNumber
           @adapter.string(namespace_key('.splits.till'))
         end
 

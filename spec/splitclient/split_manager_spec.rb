@@ -19,8 +19,8 @@ describe SplitIoClient do
   it 'returns splits' do
     expect(subject.splits).to match_array(
       [
-        { name: 'test_1_ruby', traffic_type_name: 'user', killed: false, treatments: ['on'], change_number: 1473413807667 },
-        { name: 'sample_feature', traffic_type_name: 'user', killed: false, treatments: ['on'], change_number: 1473325164381 }
+        { name: 'test_1_ruby', traffic_type_name: 'user', killed: false, treatments: ['on'], changeNumber: 1473413807667 },
+        { name: 'sample_feature', traffic_type_name: 'user', killed: false, treatments: ['on'], changeNumber: 1473325164381 }
       ]
     )
   end
@@ -39,13 +39,13 @@ describe SplitIoClient do
       traffic_type_name: 'user',
       killed: false,
       treatments: %w(on),
-      change_number: 1473413807667
+      changeNumber: 1473413807667
     )
   end
 
   it 'returns split view' do
     expect(subject.build_split_view('foo', subject.split('test_1_ruby'))).to eq(
-      { name: 'foo', traffic_type_name: nil, killed: false, treatments: [], change_number: nil }
+      { name: 'foo', traffic_type_name: nil, killed: false, treatments: [], changeNumber: nil }
     )
   end
 end

@@ -15,13 +15,13 @@ module SplitIoClient
         return if names.nil? || names.empty?
 
         names.each do |name|
-          since = @segments_repository.get_change_number(name)
+          since = @segments_repository.get_changeNumber(name)
           while true
             fetch_segments(name, prefix, since).each { |segment| @segments_repository.add_to_segment(segment) }
-            @config.logger.debug("Segment #{name} fetched before: #{since}, till: #{@segments_repository.get_change_number(name)}") if @config.debug_enabled
+            @config.logger.debug("Segment #{name} fetched before: #{since}, till: #{@segments_repository.get_changeNumber(name)}") if @config.debug_enabled
 
-            break if (since.to_i >= @segments_repository.get_change_number(name).to_i)
-            since = @segments_repository.get_change_number(name)
+            break if (since.to_i >= @segments_repository.get_changeNumber(name).to_i)
+            since = @segments_repository.get_changeNumber(name)
           end
         end
 
@@ -39,7 +39,7 @@ module SplitIoClient
           @config.logger.error("Failed to make a http request")
         elsif segment.status / 100 == 2
           segment_content = JSON.parse(segment.body, symbolize_names: true)
-          @segments_repository.set_change_number(name, segment_content[:till])
+          @segments_repository.set_changeNumber(name, segment_content[:till])
           @metrics.count(prefix + '.status.' + segment.status.to_s, 1)
 
           if @config.debug_enabled

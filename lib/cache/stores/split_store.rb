@@ -39,14 +39,14 @@ module SplitIoClient
         end
 
         def store_splits
-          data = splits_since(@splits_repository.get_change_number)
+          data = splits_since(@splits_repository.get_changeNumber)
 
           data[:splits] && data[:splits].each do |split|
             add_split_unless_archived(split)
           end
 
           @splits_repository.set_segment_names(data[:segment_names])
-          @splits_repository.set_change_number(data[:till])
+          @splits_repository.set_changeNumber(data[:till])
 
           @config.logger.debug("segments seen(#{data[:segment_names].length}): #{data[:segment_names].to_a}") if @config.debug_enabled
 

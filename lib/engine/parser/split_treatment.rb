@@ -27,7 +27,7 @@ module SplitIoClient
             next if condition.empty?
 
             if matcher_type(condition).match?(keys[:matching_key], attributes)
-              key = keys[:bucketing_key] ? keys[:bucketing_key] : keys[:matching_key]
+              key = keys[:bucketingKey] ? keys[:bucketingKey] : keys[:matching_key]
               result = Splitter.get_treatment(key, split[:seed], condition.partitions)
 
               if result.nil?
@@ -62,8 +62,8 @@ module SplitIoClient
           end
         end
 
-        def treatment(label, treatment, change_number = nil)
-          { label: label, treatment: treatment, change_number: change_number }
+        def treatment(label, treatment, changeNumber = nil)
+          { label: label, treatment: treatment, changeNumber: changeNumber }
         end
       end
     end

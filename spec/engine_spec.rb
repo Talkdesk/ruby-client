@@ -44,7 +44,7 @@ describe SplitIoClient do
         expect(subject.get_treatment('my_random_user_id', 'my_random_feaure', nil, nil, false, true)).to eq(
           treatment: SplitIoClient::Treatments::CONTROL,
           label: SplitIoClient::Engine::Models::Label::EXCEPTION,
-          change_number: nil
+          changeNumber: nil
         )
       end
 
@@ -56,7 +56,7 @@ describe SplitIoClient do
         expect(subject.get_treatment(nil, 'my_random_feaure', nil, nil, false, true)).to eq(
           treatment: SplitIoClient::Treatments::CONTROL,
           label: SplitIoClient::Engine::Models::Label::EXCEPTION,
-          change_number: nil
+          changeNumber: nil
         )
       end
 
@@ -68,7 +68,7 @@ describe SplitIoClient do
         expect(subject.get_treatment('my_random_user_id', nil, nil, nil, false, true)).to eq(
           treatment: SplitIoClient::Treatments::CONTROL,
           label: SplitIoClient::Engine::Models::Label::EXCEPTION,
-          change_number: nil
+          changeNumber: nil
         )
       end
     end
@@ -126,17 +126,17 @@ describe SplitIoClient do
         )
       end
 
-      it 'validates the feature by bucketing_key' do
-        key = { bucketing_key: 'bucketing_key', matching_key: 'fake_user_id_1' }
+      it 'validates the feature by bucketingKey' do
+        key = { bucketingKey: 'bucketingKey', matching_key: 'fake_user_id_1' }
 
         expect(subject.get_treatment(key, 'new_feature')).to eq SplitIoClient::Treatments::ON
         impressions = subject.instance_variable_get(:@impressions_repository).clear
 
-        expect(impressions.first[:impressions]['key_name']).to eq('fake_user_id_1')
+        expect(impressions.first[:impressions]['keyName']).to eq('fake_user_id_1')
       end
 
-      it 'validates the feature by bucketing_key for nil matching_key' do
-        key = { bucketing_key: 'fake_user_id_1' }
+      it 'validates the feature by bucketingKey for nil matching_key' do
+        key = { bucketingKey: 'fake_user_id_1' }
 
         expect(subject.get_treatment(key, 'new_feature')).to eq "control"
       end
@@ -170,8 +170,8 @@ describe SplitIoClient do
         )
       end
 
-      it 'validates the feature by bucketing_key' do
-        key = { bucketing_key: 'bucketing_key', matching_key: 'fake_user_id_1' }
+      it 'validates the feature by bucketingKey' do
+        key = { bucketingKey: 'bucketingKey', matching_key: 'fake_user_id_1' }
 
         expect(subject.get_treatments(key, ['new_feature', 'new_feature2'])).to eq(
           new_feature: SplitIoClient::Treatments::ON,
@@ -179,11 +179,11 @@ describe SplitIoClient do
         )
         impressions = subject.instance_variable_get(:@adapter).impressions_repository.clear
 
-        expect(impressions.first[:impressions]['key_name']).to eq('fake_user_id_1')
+        expect(impressions.first[:impressions]['keyName']).to eq('fake_user_id_1')
       end
 
-      it 'validates the feature by bucketing_key for nil matching_key' do
-        key = { bucketing_key: 'fake_user_id_1' }
+      it 'validates the feature by bucketingKey for nil matching_key' do
+        key = { bucketingKey: 'fake_user_id_1' }
 
         expect(subject.get_treatments(key, ['new_feature'])).to eq(new_feature: SplitIoClient::Treatments::CONTROL)
       end

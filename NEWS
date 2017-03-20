@@ -5,7 +5,7 @@ Factory is build now as SplitIoClient::SplitFactoryBuilder.build('<API_KEY>')
 
 3.0.2
 
-now support also client.get_treatment( { :matching_key = 'bb' , "bucketing_key = ''}, ....)
+now support also client.get_treatment( { :matching_key = 'bb' , "bucketingKey = ''}, ....)
 
 2.0.1
 

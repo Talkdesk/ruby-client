@@ -27,7 +27,7 @@ describe SplitIoClient::Cache::Stores::SplitStore do
       store.send(:store_splits)
 
       expect(store.splits_repository.splits.size).to eq(2)
-      expect(store.splits_repository.get_change_number).to eq(store.send(:splits_since, -1)[:till])
+      expect(store.splits_repository.get_changeNumber).to eq(store.send(:splits_since, -1)[:till])
     end
 
     it 'refreshes splits' do
@@ -62,7 +62,7 @@ describe SplitIoClient::Cache::Stores::SplitStore do
       store.send(:store_splits)
 
       expect(store.splits_repository.splits.size).to eq(2)
-      expect(store.splits_repository.get_change_number).to eq(store.send(:splits_since, -1)[:till].to_s)
+      expect(store.splits_repository.get_changeNumber).to eq(store.send(:splits_since, -1)[:till].to_s)
     end
 
     it 'refreshes splits' do

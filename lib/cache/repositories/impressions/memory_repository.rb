@@ -18,15 +18,15 @@ module SplitIoClient
             end
           end
 
-          def add_bulk(key, bucketing_key, treatments_labels_change_numbers, time)
-            treatments_labels_change_numbers.each do |split_name, treatment_label_number|
+          def add_bulk(key, bucketingKey, treatments_labels_changeNumbers, time)
+            treatments_labels_changeNumbers.each do |split_name, treatment_label_number|
               add(
                 split_name,
-                'key_name' => key,
-                'bucketing_key' => bucketing_key,
+                'keyName' => key,
+                'bucketingKey' => bucketingKey,
                 'treatment' => treatment_label_number[:treatment],
                 'label' => @config.labels_enabled ? treatment_label_number[:label] : nil,
-                'change_number' => treatment_label_number[:change_number],
+                'changeNumber' => treatment_label_number[:changeNumber],
                 'time' => time
               )
             end

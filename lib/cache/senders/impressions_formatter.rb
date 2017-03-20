@@ -21,12 +21,12 @@ module SplitIoClient
                 .map do |impression|
                   ip = impression[:ip]
                   {
-                    keyName: impression[:impressions]['key_name'],
+                    keyName: impression[:impressions]['keyName'],
                     treatment: impression[:impressions]['treatment'],
                     time: impression[:impressions]['time'],
-                    bucketingKey: impression[:impressions]['bucketing_key'],
+                    bucketingKey: impression[:impressions]['bucketingKey'],
                     label: impression[:impressions]['label'],
-                    changeNumber: impression[:impressions]['change_number'],
+                    changeNumber: impression[:impressions]['changeNumber'],
                   }
                 end
 
@@ -62,9 +62,9 @@ module SplitIoClient
 
         def impression_hash(impression)
           "#{impression[:feature]}:" \
-          "#{impression[:impressions]['key_name']}:" \
-          "#{impression[:impressions]['bucketing_key']}:" \
-          "#{impression[:impressions]['change_number']}:" \
+          "#{impression[:impressions]['keyName']}:" \
+          "#{impression[:impressions]['bucketingKey']}:" \
+          "#{impression[:impressions]['changeNumber']}:" \
           "#{impression[:impressions]['treatment']}"
         end
       end

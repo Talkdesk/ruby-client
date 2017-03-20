@@ -237,15 +237,15 @@ end
 Also, you can use different keys for actually getting treatment and sending impressions to the server:
 ```ruby
 split_client.get_treatment(
-	{ matching_key: 'user_id', bucketing_key: 'private_user_id' },
+	{ matching_key: 'user_id', bucketingKey: 'private_user_id' },
 	'feature_name',
 	attr: 'val'
 )
 ```
-When it might be useful? Say, you have a user browsing your website and not signed up yet. You assign some internal id to that user (i.e. bucketing_key) and after user signs up you assign him a matching_key.
+When it might be useful? Say, you have a user browsing your website and not signed up yet. You assign some internal id to that user (i.e. bucketingKey) and after user signs up you assign him a matching_key.
 By doing this you can provide both anonymous and signed up user with the same treatment.
 
-`bucketing_key` may be `nil` in that case `matching_key` would be used as a key, so calling
+`bucketingKey` may be `nil` in that case `matching_key` would be used as a key, so calling
 ```ruby
 split_client.get_treatment(
 	{ matching_key: 'user_id' },
@@ -257,7 +257,7 @@ Is exactly the same as calling
 ```ruby
 split_client.get_treatment('user_id' ,'feature_name', attr: 'val')
 ```
-`bucketing_key` must not be nil
+`bucketingKey` must not be nil
 
 Also you can use the split manager:
 
@@ -280,28 +280,28 @@ And you should get something like this:
 		traffic_type_name: nil,
 		killed: false,
 		treatments: nil,
-		change_number: 1469134003507
+		changeNumber: 1469134003507
 	},
 	{
 		name: 'another_feature',
 		traffic_type_name: nil,
 		killed: false,
 		treatments: nil,
-		change_number: 1469134003414
+		changeNumber: 1469134003414
 	},
 	{
 		name: 'even_more_features',
 		traffic_type_name: nil,
 		killed: false,
 		treatments: nil,
-		change_number: 1469133991063
+		changeNumber: 1469133991063
 	},
 	{
 		name: 'yet_another_feature',
 		traffic_type_name: nil,
 		killed: false,
 		treatments: nil,
-		change_number: 1469133757521
+		changeNumber: 1469133757521
 	}
 ]
  ```

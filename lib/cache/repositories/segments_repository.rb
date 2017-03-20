@@ -35,11 +35,11 @@ module SplitIoClient
           @adapter.get_set(namespace_key('.segments.registered'))
         end
 
-        def set_change_number(name, last_change)
+        def set_changeNumber(name, last_change)
           @adapter.set_string(namespace_key(".segment.#{name}.till"), last_change)
         end
 
-        def get_change_number(name)
+        def get_changeNumber(name)
           @adapter.string(namespace_key(".segment.#{name}.till")) || -1
         end
 

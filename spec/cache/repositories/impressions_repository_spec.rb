@@ -18,13 +18,13 @@ describe SplitIoClient::Cache::Repositories::ImpressionsRepository do
     end
 
     it 'adds impressions' do
-      repository.add('foo1', 'key_name' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002)
-      repository.add('foo2', 'key_name' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285)
+      repository.add('foo1', 'keyName' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002)
+      repository.add('foo2', 'keyName' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285)
 
       expect(repository.clear).to match_array(
         [
-          { feature: 'foo1', impressions: { 'key_name' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002 }, ip: ip },
-          { feature: 'foo2', impressions: { 'key_name' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285 }, ip: ip },
+          { feature: 'foo1', impressions: { 'keyName' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002 }, ip: ip },
+          { feature: 'foo2', impressions: { 'keyName' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285 }, ip: ip },
         ]
       )
 
@@ -37,7 +37,7 @@ describe SplitIoClient::Cache::Repositories::ImpressionsRepository do
         'bar' => { treatment: 'no', label: 'sample label2' }
       }
 
-      repository.add_bulk('foo', 'sample_bucketing_key', results, Time.now)
+      repository.add_bulk('foo', 'sample_bucketingKey', results, Time.now)
     end
   end
 
@@ -48,9 +48,9 @@ describe SplitIoClient::Cache::Repositories::ImpressionsRepository do
     before do
       Redis.new.flushall
 
-      repository.add('foo1', 'key_name' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002)
-      repository.add('foo2', 'key_name' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285)
-      repository.add('foo2', 'key_name' => 'matching_key3', 'treatment' => 'on', 'time' => 1478113518500)
+      repository.add('foo1', 'keyName' => 'matching_key', 'treatment' => 'on', 'time' => 1478113516002)
+      repository.add('foo2', 'keyName' => 'matching_key2', 'treatment' => 'off', 'time' => 1478113518285)
+      repository.add('foo2', 'keyName' => 'matching_key3', 'treatment' => 'on', 'time' => 1478113518500)
     end
 
     let(:config) { SplitIoClient::SplitConfig.new(impressions_queue_size: 1) }

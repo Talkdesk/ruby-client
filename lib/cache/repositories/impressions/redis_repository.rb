@@ -18,16 +18,16 @@ module SplitIoClient
             )
           end
 
-          def add_bulk(key, bucketing_key, treatments_labels_change_numbers, time)
+          def add_bulk(key, bucketingKey, treatments_labels_changeNumbers, time)
             @adapter.redis.pipelined do
-              treatments_labels_change_numbers.each_slice(IMPRESSIONS_SLICE) do |treatments_labels_change_numbers_slice|
-                treatments_labels_change_numbers_slice.each do |split_name, treatment_label_change_number|
+              treatments_labels_changeNumbers.each_slice(IMPRESSIONS_SLICE) do |treatments_labels_changeNumbers_slice|
+                treatments_labels_changeNumbers_slice.each do |split_name, treatment_label_changeNumber|
                   add(split_name,
-                    'key_name' => key,
-                    'bucketing_key' => bucketing_key,
-                    'treatment' => treatment_label_change_number[:treatment],
-                    'label' => @config.labels_enabled ? treatment_label_change_number[:label] : nil,
-                    'change_number' => treatment_label_change_number[:change_number],
+                    'keyName' => key,
+                    'bucketingKey' => bucketingKey,
+                    'treatment' => treatment_label_changeNumber[:treatment],
+                    'label' => @config.labels_enabled ? treatment_label_changeNumber[:label] : nil,
+                    'changeNumber' => treatment_label_changeNumber[:changeNumber],
                     'time' => time
                   )
                 end
