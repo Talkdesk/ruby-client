@@ -1,6 +1,7 @@
 require 'splitclient-rb/version'
 
 require 'exceptions/sdk_blocker_timeout_expired_exception'
+require 'cache/routers/impression_router'
 require 'cache/adapters/memory_adapters/map_adapter'
 require 'cache/adapters/memory_adapters/queue_adapter'
 require 'cache/adapters/memory_adapter'
