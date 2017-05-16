@@ -370,8 +370,19 @@ Nothing fancy here, it just takes impression and logs it to the stdout. Now, to 
 {
   # other options
   impression_listener: MyImpressionListener.new # do remember to initialize your class here
+  # other options
 }
 ```
+
+### Logging
+
+Ruby SDK makes use of Ruby stdlib's `Logger` class to log errors/events, default option is: `Logger.new($stdout)`.
+
+You can configure the following options in the config file:
+
+logger: Logger.new('logfile.log'), # you can specify your own Logger class instance here
+debug_enabled: true, # used for more verbose logging, including more debug information (false is the default)
+transport_debug_enabled: true # used for log transport data (mostly http requests, false is the default)
 
 ### SDK Modes
 
