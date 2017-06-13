@@ -61,6 +61,8 @@ module SplitIoClient
 
       @labels_enabled = opts[:labels_enabled].nil? ? SplitConfig.default_labels_logging : opts[:labels_enabled]
 
+      @threads = {}
+
       startup_log
     end
 
@@ -161,6 +163,8 @@ module SplitIoClient
 
     attr_reader :redis_url
     attr_reader :redis_namespace
+
+    attr_accessor :threads
 
     #
     # The default split client configuration
